@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link href="style.css" rel="stylesheet"> 
+    <title>JavaScript Exercice 2</title> 
+</head>
+<body>
+    <h1>Exercice 2 JavaScript</h1> 
+    
+    <div id="board"></div> 
+    
+    <div id="carre-clicked-container" style="margin-top: 20px;"></div> 
+    <!-- Conteneur pour afficher le nouveau carré créé après un clic -->
+
+    <script>
+        // Créer les 4 carrés
+        const carre = document.createElement("div"); // Premier carré
+        carre.classList.add("carre");
+
+        const newcarre2 = document.createElement("div"); 
+        newcarre2.classList.add("newcarre2");
+
+        const newcarre3 = document.createElement("div"); 
+        newcarre3.classList.add("newcarre3");
+
+        const newcarre4 = document.createElement("div"); 
+        newcarre4.classList.add("newcarre4");
+
+        // Ajouter les carrés dans le conteneur #board
+        const board = document.querySelector("#board"); 
+        // Sélectionne le conteneur #board
+        board.append(carre, newcarre2, newcarre3, newcarre4); 
+        // Ajoute les carrés au conteneur
+
+        // Ajouter un événement de clic à chaque carré
+        const carreClickedContainer = document.querySelector("#carre-clicked-container"); 
+        // Sélectionne le conteneur pour afficher le carré créé
+
+        [carre, newcarre2, newcarre3, newcarre4].forEach(function(carre) {
+            carre.addEventListener("click", function() {
+                carreClickedContainer.innerHTML = ""; 
+                // Supprime tout contenu précédent dans le conteneur
+
+                const newCarre = document.createElement("div"); 
+                // Crée un nouveau carré
+                newCarre.className = carre.className; 
+                // Copie toutes les classes CSS de l'élément "carre" dans "newCarre".
+                // Cela permet au nouvel élément "newCarre" d'avoir la même apparence que "carre".
+
+                const recupColor = window.getComputedStyle(carre).backgroundColor; 
+                // Récupère la couleur de fond du carré cliqué
+
+                newCarre.textContent = recupColor; 
+                // Affiche la couleur comme texte dans le nouveau carré
+
+                carreClickedContainer.appendChild(newCarre); 
+                // Ajoute le nouveau carré dans le conteneur
+            });
+        });
+    </script>
+</body>
+</html>
